@@ -4,7 +4,7 @@
   --text: #e5f0ff;
   --muted: #a5c0e0;
   --accent: #3b82f6; /* azul brillante */
-  --ring: rgba(59, 130, 246, 0.35);
+  --ring: #90a0b959;
 }
 * {
   box-sizing: border-box;
