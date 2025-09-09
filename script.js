@@ -1,41 +1,31 @@
-// Calcula F(n) usando un algoritmo iterativo con BigInt (rápido y exacto):
 function fibonacci(n) {
-  if (n === 0) return 0n;
-  if (n === 1) return 1n;
-  let a = 0n,
-    b = 1n;
+  if (n <= 1) {
+    return n;
+  }
+  let a = 0;
+  let b = 1;
+  let temp;
   for (let i = 2; i <= n; i++) {
-    const c = a + b;
+    temp = a + b;
     a = b;
-    b = c;
+    b = temp;
   }
   return b;
 }
 
-const $n = document.getElementById("n");
-const $btn = document.getElementById("btn");
-const $out = document.getElementById("out");
-const $status = document.getElementById("status");
-
-function formatBigInt(x) {
-  try {
-    return new Intl.NumberFormat("es-ES").format(x);
-  } catch {
-    return x.toString();
+function calcularFibonacci() {
+  const numero = parseInt(document.getElementById("numero").value);
+  if (isNaN(numero) || numero < 0) {
+    document.getElementById("resultado").textContent =
+      "Por favor ingrese un número válido.";
+    return;
   }
+  const resultado = fibonacci(numero);
+  document.getElementById(
+    "resultado"
+  ).textContent = `El número de Fibonacci en la posición ${numero} es ${resultado}.`;
 }
 
-function calcular() {
-  const raw = $n.value.trim();
-  if (raw === "") {
-    setError("Ingrese un número.");
-    return;
-  }
-  const n = Number(raw);
-  if (!Number.isInteger(n) || n < 0) {
-    setError("n debe ser un entero ≥ 0.");
-    return;
-  }
   if (n > 1000) {
     setError("Límite por rendimiento: n ≤ 1000.");
     return;
