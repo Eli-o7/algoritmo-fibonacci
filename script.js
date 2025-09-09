@@ -26,30 +26,3 @@ function calcularFibonacci() {
   ).textContent = `El número de Fibonacci en la posición ${numero} es ${resultado}.`;
 }
 
-  if (n > 1000) {
-    setError("Límite por rendimiento: n ≤ 1000.");
-    return;
-  }
-
-  $status.textContent = "Calculando…";
-  const t0 = performance.now();
-  const Fn = fibonacci(n);
-  const t1 = performance.now();
-
-  const header = `F(${n}) =`;
-  $out.textContent = `${header}\n${formatBigInt(Fn)}`;
-  $status.innerHTML = `<span class="ok">Listo:</span> ${Math.max(
-    0,
-    t1 - t0
-  ).toFixed(3)} ms`;
-}
-
-function setError(msg) {
-  $status.innerHTML = `<span class="error">Error:</span> ${msg}`;
-  $out.textContent = "—";
-}
-
-$btn.addEventListener("click", calcular);
-$n.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") calcular();
-});
